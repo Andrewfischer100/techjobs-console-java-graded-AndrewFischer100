@@ -77,7 +77,7 @@ public class JobData {
 
             String aValue = row.get(column);
 
-            if (aValue.contains(value)) {
+            if (aValue.toLowerCase().contains(value.toLowerCase())) {
                 jobs.add(row);
             }
         }
@@ -101,7 +101,8 @@ public class JobData {
             stringKeyValues = "\n*****\n";
             for (Map.Entry<String, String> keyValues : job.entrySet()) {
                 stringKeyValues += (keyValues.getKey() + ": " + keyValues.getValue() + "\n");
-                if (stringKeyValues.contains(value) && !doesSearchValueMatch.contains(job)) {
+
+                if (stringKeyValues.toLowerCase().contains(value.toLowerCase()) && !doesSearchValueMatch.contains(job)) {
                     doesSearchValueMatch.add(job);
                 }
             }
