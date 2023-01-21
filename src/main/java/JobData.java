@@ -109,7 +109,7 @@ public class JobData {
         //I'm realizing that perhaps I may have to take the stringKeyValues and write an if else statement to add them to an arrayList. The purpose of the array list is to be used to compare to the value (if arraylist does not contain value, add that value)
         //closer to success! -- notes: using the value front -- we get 10 hits(well, 20) Those 10 hits repeat the same job(must look into loop)
         //note -- had trouble printing ALL job listings into a single array.  -- now get back to work at matching
-
+// as it stands, I'm able to print a single finding of the word "front" knowing that ther are twenty. This means that we have proper logic, but we need to evaluate our loops
         ArrayList<String> testArrayList = new ArrayList<>();
         String stringKeyValues = null;
         for (HashMap<String, String> job : allJobs) {
@@ -117,9 +117,10 @@ public class JobData {
             for (Map.Entry<String, String> keyValues : job.entrySet()) {
                 stringKeyValues += (keyValues.getKey() + ": " + keyValues.getValue() + "\n");
             }
-            testArrayList.add(stringKeyValues);
+            if (stringKeyValues.contains(value)) {
+                testArrayList.add(stringKeyValues);
+            }
         }
-
         System.out.println(testArrayList);
         // TODO - implement this method
         return doesSearchValueMatch;
