@@ -2,6 +2,7 @@ import java.sql.SQLOutput;
 import java.util.*;
 
 /**
+ * :)
  * Created by LaunchCode
  */
 public class TechJobs {
@@ -118,7 +119,7 @@ public class TechJobs {
 
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
-        
+
 
         if (someJobs.size() == 0) {
             System.out.println("No Results");
