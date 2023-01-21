@@ -97,26 +97,30 @@ public class JobData {
         ArrayList<HashMap<String, String>> doesSearchValueMatch = new ArrayList<>();
         ArrayList<String> testArrayList = new ArrayList<>();
         ArrayList<String> listOfMatches = new ArrayList<>();
+        HashMap<String, String> jobHashMap = new HashMap<>();
+
         String stringKeyValues = null;
-        outerLoop:
+
         for (HashMap<String, String> job : allJobs) {
             stringKeyValues = "\n*****\n";
-            innerLoop:
             for (Map.Entry<String, String> keyValues : job.entrySet()) {
-                stringKeyValues += ("Key :" + keyValues.getKey() + ": " + "value: " + keyValues.getValue() + "\n");
+                stringKeyValues += (keyValues.getKey() + ": " + keyValues.getValue() + "\n");
+                jobHashMap.put(keyValues.getKey(), keyValues.getValue());
+
             }
             testArrayList.add(stringKeyValues);
-        }
+            System.out.println(jobHashMap);
 
+        }
         for (int i = 0; i < testArrayList.size(); i++) {
-            if (testArrayList.get(i).contains(value) && !listOfMatches.contains((testArrayList.get(i)))) {
+            if (testArrayList.get(i).contains(value)) {
                 listOfMatches.add(testArrayList.get(i));
+
             }
-
         }
-        // TODO - implement this method
+        for (String listOfMatch : listOfMatches) {
+        }
 
-        System.out.println(listOfMatches);
         return doesSearchValueMatch;
     }
 
