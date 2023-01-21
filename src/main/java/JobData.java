@@ -95,37 +95,30 @@ public class JobData {
         // load data, if not already loaded
         loadData();
         ArrayList<HashMap<String, String>> doesSearchValueMatch = new ArrayList<>();
-
-        //how to get each value available?
-        // first we need to take all jobs into key value pairs -- to do that we need a hashmap
-        //now that we have the hashmap -- we must then isolate all of our values
-        //Now at this point we can kind of match! We want to see if JOB contains any to our keyvalue pairs. We can do that with an If statement
-        //keyValues is of type Entry. which we can't do much with. However we can make those entries a string
-
-        //Since KeyValues isn't in scope of the outer loop -- we can add the KeyValues to something else to compare -- perhaps an arrayList of Strings
-        //So testArrayList has been populated by single key value pairs. I want to go ahead and make those key value pairs the full job.
-        //great now that you are making full job listings - it is time to see if you can write code to only print the listing IF it contains a specific value--
-        // that specific value is fed into the above method with the word "value"
-        //I'm realizing that perhaps I may have to take the stringKeyValues and write an if else statement to add them to an arrayList. The purpose of the array list is to be used to compare to the value (if arraylist does not contain value, add that value)
-        //closer to success! -- notes: using the value front -- we get 10 hits(well, 20) Those 10 hits repeat the same job(must look into loop)
-        //note -- had trouble printing ALL job listings into a single array.  -- now get back to work at matching
-// as it stands, I'm able to print a single finding of the word "front" knowing that ther are twenty. This means that we have proper logic, but we need to evaluate our loops
         ArrayList<String> testArrayList = new ArrayList<>();
+        ArrayList<String> listOfMatches = new ArrayList<>();
         String stringKeyValues = null;
+        outerLoop:
         for (HashMap<String, String> job : allJobs) {
             stringKeyValues = "\n*****\n";
+            innerLoop:
             for (Map.Entry<String, String> keyValues : job.entrySet()) {
-                stringKeyValues += (keyValues.getKey() + ": " + keyValues.getValue() + "\n");
+                stringKeyValues += ("Key :" + keyValues.getKey() + ": " + "value: " + keyValues.getValue() + "\n");
             }
-            if (stringKeyValues.contains(value)) {
-                testArrayList.add(stringKeyValues);
-            }
+            testArrayList.add(stringKeyValues);
         }
-        System.out.println(testArrayList);
+
+        for (int i = 0; i < testArrayList.size(); i++) {
+            if (testArrayList.get(i).contains(value) && !listOfMatches.contains((testArrayList.get(i)))) {
+                listOfMatches.add(testArrayList.get(i));
+            }
+
+        }
         // TODO - implement this method
+
+        System.out.println(listOfMatches);
         return doesSearchValueMatch;
     }
-
 
     /**
      * Read in data from a CSV file and store it in a list
